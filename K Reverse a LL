@@ -1,0 +1,32 @@
+void kReverse(int k) {
+    linkedlist prev;
+
+    while (this->size > 0) {
+      linkedlist curr;
+
+      if (this->size >= k) {
+        for (int i = 0; i < k; i++) {
+          int val = this->getFirst();
+          this->removeFirst(val);
+          curr.addFirst(val);
+        }
+      } else {
+        int sz = this->size;
+        for (int i = 0; i < sz; i++) {
+          int val = this->getFirst();
+          this->removeFirst(val);
+          curr.addLast(val);
+        }
+      }
+      if (prev.size == 0) {
+        prev = curr;
+      } else {
+        prev.tail->next = curr.head;
+        prev.tail = curr.tail;
+        prev.size += curr.size;
+      }
+    }
+    this->head = prev.head;
+    this->tail = prev.tail;
+    this->size = prev.size;
+  }
