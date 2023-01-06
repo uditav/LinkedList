@@ -1,0 +1,14 @@
+void ReverseLinkedList(Node*&head, Node*&tail){
+   Node*prev=NULL;
+   Node*curr=head;
+   
+   while(curr!=NULL){
+    Node*forward=curr->next;
+    curr->next=prev;
+    prev=curr;
+    curr=forward;
+   }
+   Node*temp=head;
+   head=tail;
+   tail=temp;
+}
