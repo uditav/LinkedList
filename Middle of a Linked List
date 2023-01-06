@@ -1,0 +1,9 @@
+Node* MiddleOfLL(Node*head, Node*tail){
+  Node*s=head;
+  Node*f=head;
+  while(f!=tail){
+    f=f->next->next;
+    s=s->next;
+  }
+  return s;
+}
