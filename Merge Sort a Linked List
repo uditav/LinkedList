@@ -1,0 +1,12 @@
+LinkedList MergeSortLL(Node*head, Node*tail){
+  if(head==tail){
+    LinkedList br;
+    br.addLast(head->data);
+    return br;
+  }
+  Node*mid=MiddleOfLL(head,tail);
+  LinkedList fsh=MergeSortLL(head,mid);
+  LinkedList ssh=MergeSortLL(mid+1,tail);
+  LinkedList cl=MergeTwoSortedLL(fsh,ssh);
+  return cl;
+}
