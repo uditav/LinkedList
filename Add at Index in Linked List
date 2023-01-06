@@ -1,0 +1,27 @@
+void AddAtIndex(Node*&head, Node*&tail, int index, int value){
+    Node*newNode=new Node(value);
+    if(index==0){
+      if(head==NULL){
+         head=tail=newNode;
+         return;
+      }
+      else{
+        newNode->next=head;
+        head=newNode;
+        return;
+      }
+    }
+    int c=0;
+    Node*temp=head;
+    while(c<index-1){
+      temp=temp->next;
+      c++;
+    }
+    if(temp!=NULL && temp->next==NULL){
+      temp->next=newNode;
+      tail=newNode;
+      return;
+    }
+    newNode->next=temp->next;
+    temp->next=newNode;
+}
