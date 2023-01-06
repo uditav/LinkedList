@@ -1,0 +1,17 @@
+void RemoveLast(Node*&head, Node*&tail){
+  if(head==NULL && tail==NULL){
+    cout<<"No element"<<endl;
+    return;
+  }
+  if(head==tail){
+    head=tail=NULL;
+    return;
+  }
+  Node*temp=head;
+  while(temp->next->next!=NULL){
+    temp=temp->next;
+  }
+  tail=temp;
+  temp=temp->next;
+  delete temp;
+}
