@@ -1,0 +1,26 @@
+int addHelper(Node*one, int pv1, Node*two, int pv2, LinkedList res){
+  if(one==NULL && two==NULL){
+    return 0;
+  }
+  int data=0;
+  if(pv1>pv2){
+       int oc=addHelper(one->next, pv1-1, two, pv2, res);
+  }
+  else if(pv1<pv2){
+       int oc=addHelper(one, pv1, two->next, pv2-1, res);
+  }
+  else{
+       int oc=addHelper(one->next, pv1-1, two->next, pv2-1, res);
+       int data = one->data + two->data + oc;
+  }
+  int nd=data%10;
+  int nc=data/10;
+  res.addFirst(nd);
+  return nc;
+}
+
+LinkedList AddTwoLL(LinkedList one, LinkedList two){
+  LinkedList res;
+  int oc=addHelper(one.head, one.size, two.head, two.size, res);
+  return res;
+}
