@@ -1,0 +1,26 @@
+LinkedList MergeTwoSortedLL(LinkedList A, LinkedList B){
+    LinkedList res;
+    Node*a=A.head;
+    Node*b=B.head;
+    while(a->next!=NULL || b->next!=NULL){
+         if(a->data<b->data){
+           res.addLast(a->data);
+           a=a->next;
+         }
+         else{
+          res.addLast(b->data);
+          b=b->next;
+         }
+    }
+    while(a!=NULL){
+          res.addLast(a->data);
+          a=a->next;
+    }
+    
+    while(b!=NULL){
+          res.addLast(b->data);
+          b=b->next;
+    }
+
+    return res;
+}
