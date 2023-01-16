@@ -1,0 +1,62 @@
+ListNode *midNode(ListNode *head)
+{
+    if (head == nullptr || head->next == nullptr)
+        return head;
+
+    ListNode *slow = head;
+    ListNode *fast = head;
+    while (fast->next != nullptr && fast->next->next != nullptr)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
+ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
+{
+    if (l1 == nullptr || l2 == nullptr)
+        return l1 != nullptr ? l1 : l2;
+
+    ListNode *dummy = new ListNode(-1);
+    ListNode *prev = dummy;
+
+    ListNode *c1 = l1;
+    ListNode *c2 = l2;
+
+    while (c1 != nullptr && c2 != nullptr)
+    {
+        if (c1->val <= c2->val)
+        {
+            prev->next = c1;
+            c1 = c1->next;
+        }
+        else
+        {
+            prev->next = c2;
+            c2 = c2->next;
+        }
+
+        prev = prev->next;
+    }
+
+    prev->next = c1 != nullptr ? c1 : c2;
+
+    ListNode *h = dummy->next;
+    dummy->next = nullptr;
+    delete dummy;
+    return h;
+}
+
+ListNode *mergeSort(ListNode *head)
+{
+    if (head == nullptr || head->next == nullptr)
+        return head;
+
+    ListNode *mid = midNode(head);
+    ListNode *nHead = mid->next;
+    mid->next = nullptr;
+
+    return mergeTwoLists(mergeSort(head), mergeSort(nHead));
+}
