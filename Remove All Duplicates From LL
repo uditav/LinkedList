@@ -1,0 +1,31 @@
+ListNode *removeDuplicates(ListNode *head)
+{
+    if (head == nullptr || head->next == nullptr)
+        return head;
+
+    ListNode *nhead = new ListNode(-1);
+    ListNode *itr = nhead;
+    itr->next = head;
+
+    ListNode *curr = head->next;
+
+    while (curr != nullptr)
+    {
+        bool isLoopRun = false;
+        while (curr != nullptr && itr->next->val == curr->val)
+        {
+            curr = curr->next;
+            isLoopRun = true;
+        }
+
+        if (isLoopRun)
+            itr->next = curr;
+        else
+            itr = itr->next;
+
+        if (curr != nullptr)
+            curr = curr->next;
+    }
+
+    return nhead->next;
+}
