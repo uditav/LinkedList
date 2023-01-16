@@ -1,0 +1,23 @@
+ListNode* segregateEvenOdd(ListNode*head){
+  if(head==NULL || head->next==NULL){
+     return head;
+  }
+  ListNode*dummyOdd=new ListNode(-1);
+  ListNode*dummyEven=new ListNode(-1);
+  ListNode*tailOdd=dummyOdd;
+  ListNode*tailEven=dummyEven;
+  ListNode*curr=head;
+  while(curr!=NULL){
+    if(curr->val%2==0){
+      tailEven->next=curr;
+      tailEven=tailEven->next;
+    }
+    else{
+      tailOdd->next=curr;
+      tailOdd=tailOdd->next;
+    }
+    curr=curr->next;
+  }
+  tailEven->next=dummyOdd->next;
+  tailOdd->next=NULL;
+}
